@@ -39,6 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+
+      //contact list
       body: ListView.separated(
         itemBuilder: (context, index) {
           final conList = contactList[index];
