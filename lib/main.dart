@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Contacts',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       home: const MyHomePage(title: 'Contacts'),
     );
@@ -36,26 +36,32 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: ListView.builder(
-          itemBuilder: (context, index) {
-            final conList = contactList[index];
-            return ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(conList.image),
-              ),
-              title: Text(
-                conList.name,
-                style: const TextStyle(fontFamily: 'Inconsolata'),
-              ),
-              subtitle: Text(
-                conList.phone,
-              ),
-            );
-          },
-          itemCount: contactList.length,
-        ));
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          final conList = contactList[index];
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage(conList.image),
+            ),
+            title: Text(
+              conList.name,
+              style: const TextStyle(fontFamily: 'Inconsolata'),
+            ),
+            subtitle: Text(
+              conList.phone,
+            ),
+          );
+        },
+        itemCount: contactList.length,
+
+        //separate contact list with divider
+        separatorBuilder: (BuildContext context, int index) {
+        return const Divider(color: Colors.grey, indent: 70.0,);
+        },
+      ),
+    );
   }
 }
